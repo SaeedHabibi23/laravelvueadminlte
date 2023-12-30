@@ -88,19 +88,12 @@ Management
 </a>
 <ul class="nav nav-treeview">
 <li class="nav-item">
-<a href="#" class="nav-link ">
-<i class="far fa-circle nav-icon"></i>
-<p>Active Page</p>
-</a>
+<router-link to="/users" class="nav-link ">
+<i class="far fa-users nav-icon text-purple"></i>
+<p> Users Page  </p>
+</router-link>
 </li>
-<li class="nav-item">
-<a href="#" class="nav-link">
-<i class="far fa-circle nav-icon"></i>
-<p>Inactive Page</p>
-</a>
-</li>
-</ul>
-</li>
+
 <li class="nav-item">
 <router-link to="/profile" class="nav-link">
 <i class="nav-icon fas fa-user text-purple"></i>
