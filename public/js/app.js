@@ -5293,6 +5293,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -38589,7 +38592,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      class: { "is-invalid": _vm.form.errors.has("Email") },
+                      class: { "is-invalid": _vm.form.errors.has("email") },
                       attrs: {
                         type: "email",
                         name: "Email",
@@ -38610,6 +38613,16 @@ var render = function () {
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "" } }, [_vm._v(" Bio ")]),
                     _vm._v(" "),
+                    _vm.form.errors.has("bio")
+                      ? _c("div", { staticClass: "text-danger" }, [
+                          _vm._v(
+                            "\n            " +
+                              _vm._s(_vm.form.errors.get("bio")) +
+                              "\n            "
+                          ),
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -38620,7 +38633,7 @@ var render = function () {
                         },
                       ],
                       staticClass: "form-control",
-                      class: { "is-invalid": _vm.form.errors.has("Bio") },
+                      class: { "is-invalid": _vm.form.errors.has("bio") },
                       attrs: { type: "text", name: "Bio", placeholder: "Bio" },
                       domProps: { value: _vm.form.bio },
                       on: {

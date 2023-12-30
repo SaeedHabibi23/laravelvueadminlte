@@ -58,12 +58,15 @@
         <div class="form-group">
             <label for=""> Email </label>
             <input v-model="form.email" type="email" name="Email" placeholder="Email"
-           class="form-control" :class="{'is-invalid': form.errors.has('Email')}" />
+           class="form-control" :class="{'is-invalid': form.errors.has('email')}" />
         </div>
         <div class="form-group">
             <label for=""> Bio </label>
+            <div v-if="form.errors.has('bio')" class="text-danger">
+            {{ form.errors.get('bio') }}
+            </div>
             <input v-model="form.bio" type="text" name="Bio" placeholder="Bio"
-           class="form-control" :class="{'is-invalid': form.errors.has('Bio')}" />
+           class="form-control" :class="{'is-invalid': form.errors.has('bio')}" />
         </div>
         <div class="form-group">
             <label for=""> Type </label>
