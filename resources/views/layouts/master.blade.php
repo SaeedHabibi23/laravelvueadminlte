@@ -93,6 +93,7 @@ Management
 <p> Users Page  </p>
 </router-link>
 </li>
+</ul>
 
 <li class="nav-item">
 <router-link to="/profile" class="nav-link">
@@ -114,11 +115,6 @@ Profile
         @csrf
         </form>
     </li>
-
-
-   
-
-
 </ul>
 </nav>
 
