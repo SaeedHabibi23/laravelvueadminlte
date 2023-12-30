@@ -5309,7 +5309,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     createUser: function createUser() {
-      this.form.post('api/users');
+      this.form.post('api/user');
     }
   },
   mounted: function mounted() {
@@ -38541,9 +38541,6 @@ var render = function () {
                     $event.preventDefault()
                     return _vm.createUser.apply(null, arguments)
                   },
-                  keydown: function ($event) {
-                    return _vm.form.onKeydown($event)
-                  },
                 },
               },
               [
@@ -38843,7 +38840,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
         [_vm._v("Save")]
       ),
     ])

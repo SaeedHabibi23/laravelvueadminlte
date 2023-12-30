@@ -48,7 +48,7 @@
         <h1 class="modal-title fs-5" id="addNewLabel"> Add New User </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form @submit.prevent="createUser" @keydown="form.onKeydown($event)">
+      <form @submit.prevent="createUser">
         <div class="modal-body">
         <div class="form-group">
             <label for=""> Name </label>
@@ -82,7 +82,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">Save</button>
       </div>
     </form>
     </div>
@@ -109,7 +109,7 @@
         },
         methods:{
             createUser(){
-               this.form.post('api/users') 
+               this.form.post('api/user') 
             }
         },
         mounted() {
