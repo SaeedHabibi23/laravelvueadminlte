@@ -48,7 +48,8 @@
         <h1 class="modal-title fs-5" id="addNewLabel"> Add New User </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <form @submit.prevent="createUser" @keydown="form.onKeydown($event)">
+        <div class="modal-body">
         <div class="form-group">
             <label for=""> Name </label>
             <input v-model="form.name" type="text" name="name" placeholder="name"
@@ -83,7 +84,9 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save</button>
       </div>
+    </form>
     </div>
+
   </div>
 </div>
     </div>
@@ -104,8 +107,14 @@
                 })
             }
         },
+        methods:{
+            createUser(){
+               this.form.post('api/users') 
+            }
+        },
         mounted() {
             console.log('Component mounted.')
-        }
+        }  
+       
     }
 </script>
