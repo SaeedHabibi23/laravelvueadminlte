@@ -49,7 +49,35 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <div class="form-group">
+            <label for=""> Name </label>
+            <input v-model="form.name" type="text" name="name" placeholder="name"
+           class="form-control" :class="{'is-invalid': form.errors.has('name')}" />
+        </div>
+        <div class="form-group">
+            <label for=""> Email </label>
+            <input v-model="form.email" type="email" name="Email" placeholder="Email"
+           class="form-control" :class="{'is-invalid': form.errors.has('Email')}" />
+        </div>
+        <div class="form-group">
+            <label for=""> Bio </label>
+            <input v-model="form.bio" type="text" name="Bio" placeholder="Bio"
+           class="form-control" :class="{'is-invalid': form.errors.has('Bio')}" />
+        </div>
+        <div class="form-group">
+            <label for=""> Type </label>
+            <select v-model="form.type" name="type" placeholder="type"
+           class="form-control" :class="{'is-invalid': form.errors.has('type')}">
+            <option value=""> Select User Type </option>
+            <option value="admin"> Admin </option>
+            <option value="user"> User </option>
+        </select>
+        </div>
+        <div class="form-group">
+            <label for=""> Password </label>
+            <input v-model="form.password" type="password" name="password" placeholder="password"
+           class="form-control" :class="{'is-invalid': form.errors.has('password')}" />
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -63,6 +91,19 @@
 
 <script>
     export default {
+        data(){
+            return {
+                form: new Form({
+                    name: '' ,
+                    email:'' , 
+                    password: '' ,
+                    type:'' , 
+                    bio: '' ,
+                    photo:'' , 
+                   
+                })
+            }
+        },
         mounted() {
             console.log('Component mounted.')
         }

@@ -8,6 +8,13 @@ require('./bootstrap');
 require('admin-lte');
 window.Vue = require('vue').default;
 
+
+import { Errors, Form } from 'vform';
+
+window.Form = Form;
+
+Vue.component(Errors.name, Errors)
+
 import VueRouter from 'vue-router';
 Vue.use(VueRouter)
 
