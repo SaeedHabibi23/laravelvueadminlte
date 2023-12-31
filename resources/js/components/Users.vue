@@ -31,8 +31,10 @@
 <td>{{user.type | propper}}</td>
 <td>{{user.created_at | formatdate}}</td>
 <td>
-    <i class="fas fa-edit text-success"> </i>
+    <i class="fas fa-edit text-success"> </i> /
+    <span style="cursor: pointer;" @click="deleteuser(user.id)">
     <i class="fas fa-trash text-danger"> </i>
+    </span>
 </td>
 </tr>
 
@@ -131,6 +133,39 @@
             },
             loadUser(){
                 axios.get('api/user').then(({data})=>(this.users= data.data));
+            } , 
+            deleteuser($id){
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        this.form.delete('api/user/'+ $id).then(()=>{
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                              'success'
+                              )
+                              Fire.$emit('AfterDelete');
+                              Toast.fire({
+                                icon: 'success',
+                                title: 'User Deleted Successfully'
+                                })
+                                }).catch(()=>{
+                                     Swal.fire(
+                                        'Failed!',
+                                        'Something went wrong.',
+                                        'error')
+                                        })
+                                    }
+                                })
+
+                                        
             }
         },
         created(){
@@ -139,6 +174,9 @@
             this.$Progress.finish();
 
             Fire.$on('AfterCreate',()=>{
+                this.loadUser();
+            });
+            Fire.$on('AfterDelete', ()=>{
                 this.loadUser();
             })
         },

@@ -5299,6 +5299,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5335,15 +5337,43 @@ __webpack_require__.r(__webpack_exports__);
         var data = _ref.data;
         return _this2.users = data.data;
       });
+    },
+    deleteuser: function deleteuser($id) {
+      var _this3 = this;
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          _this3.form["delete"]('api/user/' + $id).then(function () {
+            Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+            Fire.$emit('AfterDelete');
+            Toast.fire({
+              icon: 'success',
+              title: 'User Deleted Successfully'
+            });
+          })["catch"](function () {
+            Swal.fire('Failed!', 'Something went wrong.', 'error');
+          });
+        }
+      });
     }
   },
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
     this.$Progress.start();
     this.loadUser();
     this.$Progress.finish();
     Fire.$on('AfterCreate', function () {
-      _this3.loadUser();
+      _this4.loadUser();
+    });
+    Fire.$on('AfterDelete', function () {
+      _this4.loadUser();
     });
   },
   mounted: function mounted() {
@@ -65143,7 +65173,22 @@ var render = function () {
                       _vm._v(_vm._s(_vm._f("formatdate")(user.created_at))),
                     ]),
                     _vm._v(" "),
-                    _vm._m(2, true),
+                    _c("td", [
+                      _c("i", { staticClass: "fas fa-edit text-success" }),
+                      _vm._v(" /\n    "),
+                      _c(
+                        "span",
+                        {
+                          staticStyle: { cursor: "pointer" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.deleteuser(user.id)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fas fa-trash text-danger" })]
+                      ),
+                    ]),
                   ])
                 }),
                 0
@@ -65170,7 +65215,7 @@ var render = function () {
       [
         _c("div", { staticClass: "modal-dialog modal-dialog-centered" }, [
           _c("div", { staticClass: "modal-content" }, [
-            _vm._m(3),
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "form",
@@ -65368,7 +65413,7 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(4),
+                _vm._m(3),
               ]
             ),
           ]),
@@ -65422,16 +65467,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Modify")]),
       ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("i", { staticClass: "fas fa-edit text-success" }),
-      _vm._v(" "),
-      _c("i", { staticClass: "fas fa-trash text-danger" }),
     ])
   },
   function () {
