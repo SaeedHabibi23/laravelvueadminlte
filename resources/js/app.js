@@ -18,6 +18,8 @@ Vue.component(Errors.name, Errors)
 import VueRouter from 'vue-router';
 Vue.use(VueRouter)
 
+import moment from 'moment'
+
 let routes = [
     {path: '/dashboard' , component: require('./components/Dashboard.vue').default} , 
     {path: '/profile' , component: require('./components/Profile.vue').default} , 
@@ -29,6 +31,13 @@ const router = new VueRouter({
     routes
 })
 
+Vue.filter('propper' , function(text){
+    return text.charAt(0).toUpperCase() + text.slice(1)
+})
+
+Vue.filter('formatdate' , function(created_at){
+    return moment(created_at).format('YYYY MM DD')
+})
 
 /**
  * The following block of code may be used to automatically register your

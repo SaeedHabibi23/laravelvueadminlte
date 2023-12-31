@@ -28,8 +28,8 @@
 <td>{{ user.id }}</td>
 <td>{{user.name}}</td>
 <td>{{user.email}}</td>
-<td>{{user.type}}</td>
-<td>{{user.created_at}}</td>
+<td>{{user.type | propper}}</td>
+<td>{{user.created_at | formatdate}}</td>
 <td>
     <i class="fas fa-edit text-success"> </i>
     <i class="fas fa-trash text-danger"> </i>
