@@ -33,7 +33,6 @@ class UserController extends Controller
             'name' => "required",
             'email' => "required",
             'bio' => "required",
-            'photo' => "required",
             'type' => "required",
             'password' => "required"
         ]);
