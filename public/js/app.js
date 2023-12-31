@@ -5315,6 +5315,7 @@ __webpack_require__.r(__webpack_exports__);
       editMode: true,
       users: {},
       form: new Form({
+        id: '',
         name: '',
         email: '',
         password: '',
@@ -5372,8 +5373,17 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateUser: function updateUser() {
-      // this.$Progress.start()
-      console.log("update user");
+      var _this4 = this;
+      this.$Progress.start();
+      this.form.put('api/user/' + this.form.id).then(function () {
+        Fire.$emit('AfterDelete');
+        Swal.fire('Updated!', 'Your file has been Updated Successfully', 'success');
+        $('#addNew').modal('hide');
+        _this4.$Progress.finish();
+      })["catch"](function () {
+        _this4.$Progress.fail();
+        Swal.fire('Failed!', 'Something went wrong.', 'error');
+      });
     },
     editModal: function editModal(user) {
       this.editMode = true;
@@ -5388,15 +5398,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this4 = this;
+    var _this5 = this;
     this.$Progress.start();
     this.loadUser();
     this.$Progress.finish();
     Fire.$on('AfterCreate', function () {
-      _this4.loadUser();
+      _this5.loadUser();
     });
     Fire.$on('AfterDelete', function () {
-      _this4.loadUser();
+      _this5.loadUser();
     });
   },
   mounted: function mounted() {

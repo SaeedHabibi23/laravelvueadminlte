@@ -114,6 +114,7 @@
                 editMode:true,
                 users: {} ,
                 form: new Form({
+                    id: '',
                     name: '' ,
                     email:'' , 
                     password: '' ,
@@ -176,9 +177,30 @@
                                         
             },
             updateUser(){
-                // this.$Progress.start()
-                console.log("update user");
+                this.$Progress.start()
+                this.form.put('api/user/'+this.form.id)
+                .then(()=>{
+                    Fire.$emit('AfterDelete');
+                    Swal.fire(
+                    'Updated!',
+                    'Your file has been Updated Successfully',
+                    'success'
+                    );
+                    $('#addNew').modal('hide');
+                    this.$Progress.finish();
 
+                })
+                .catch(()=>{
+                    this.$Progress.fail();
+                    Swal.fire(
+                    'Failed!',
+                    'Something went wrong.',
+                    'error')
+                })
+                   
+                                
+                            
+                            
 
             },
             editModal(user){
