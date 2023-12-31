@@ -5301,6 +5301,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5362,6 +5365,15 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
+    },
+    editModal: function editModal(user) {
+      this.form.reset();
+      $('#addNew').modal('show');
+      this.form.fill(user);
+    },
+    newModal: function newModal() {
+      this.form.reset();
+      $('#addNew').modal('show');
     }
   },
   created: function created() {
@@ -65151,11 +65163,30 @@ var render = function () {
     _c("div", { staticClass: "row justify-content-center mt-4" }, [
       _c("div", { staticClass: "col-12" }, [
         _c("div", { staticClass: "card" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "card-header" }, [
+            _c("h3", { staticClass: "card-title" }, [
+              _vm._v("  Users List   "),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-tools" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: { click: _vm.newModal },
+                },
+                [
+                  _c("i", { staticClass: "fas fa-user-plus" }),
+                  _vm._v(" Add New User "),
+                ]
+              ),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-body table-responsive p-0" }, [
             _c("table", { staticClass: "table table-hover text-nowrap" }, [
-              _vm._m(1),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -65174,8 +65205,22 @@ var render = function () {
                     ]),
                     _vm._v(" "),
                     _c("td", [
-                      _c("i", { staticClass: "fas fa-edit text-success" }),
-                      _vm._v(" /\n    "),
+                      _c(
+                        "span",
+                        {
+                          staticStyle: { cursor: "pointer" },
+                          on: {
+                            click: function ($event) {
+                              return _vm.editModal(user)
+                            },
+                          },
+                        },
+                        [
+                          _c("i", { staticClass: "fas fa-edit text-success" }),
+                          _vm._v(" /\n    "),
+                        ]
+                      ),
+                      _vm._v(" "),
                       _c(
                         "span",
                         {
@@ -65215,7 +65260,7 @@ var render = function () {
       [
         _c("div", { staticClass: "modal-dialog modal-dialog-centered" }, [
           _c("div", { staticClass: "modal-content" }, [
-            _vm._m(2),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "form",
@@ -65413,7 +65458,7 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(3),
+                _vm._m(2),
               ]
             ),
           ]),
@@ -65423,32 +65468,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("  Users List   ")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-tools" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-primary",
-            attrs: {
-              type: "button",
-              "data-bs-toggle": "modal",
-              "data-bs-target": "#addNew",
-            },
-          },
-          [
-            _c("i", { staticClass: "fas fa-user-plus" }),
-            _vm._v(" Add New User "),
-          ]
-        ),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

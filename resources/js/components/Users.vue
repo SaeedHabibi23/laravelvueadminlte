@@ -6,7 +6,7 @@
 <div class="card-header">
 <h3 class="card-title">  Users List   </h3>
 <div class="card-tools">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNew"> <i class="fas fa-user-plus"> </i> Add New User </button>
+    <button type="button" class="btn btn-primary" @click="newModal"> <i class="fas fa-user-plus"> </i> Add New User </button>
 </div>
 </div>
 
@@ -31,9 +31,12 @@
 <td>{{user.type | propper}}</td>
 <td>{{user.created_at | formatdate}}</td>
 <td>
-    <i class="fas fa-edit text-success"> </i> /
-    <span style="cursor: pointer;" @click="deleteuser(user.id)">
-    <i class="fas fa-trash text-danger"> </i>
+   
+    <span style="cursor: pointer;" @click="editModal(user)">
+        <i class="fas fa-edit text-success"> </i> /
+    </span>
+    <span  @click="deleteuser(user.id)" style="cursor: pointer;">
+    <i  class="fas fa-trash text-danger"> </i>
     </span>
 </td>
 </tr>
@@ -166,6 +169,16 @@
                                 })
 
                                         
+            },
+            editModal(user){
+                this.form.reset();
+                $('#addNew').modal('show');
+                this.form.fill(user)
+
+            },
+            newModal(){
+                this.form.reset();
+                $('#addNew').modal('show');
             }
         },
         created(){
