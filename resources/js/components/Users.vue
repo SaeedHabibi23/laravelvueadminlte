@@ -53,10 +53,11 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="addNewLabel"> Add New User </h1>
+        <h1 class="modal-title fs-5" v-show="!editMode"  id="addNewLabel"> Add New User </h1>
+        <h1 class="modal-title fs-5" v-show="editMode" id="addNewLabel"> Update User </h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form @submit.prevent="createUser">
+      <form @submit.prevent="editMode? updateUser() : createUser()">
         <div class="modal-body">
         <div class="form-group">
             <label for=""> Name </label>
@@ -93,7 +94,10 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" v-show="!editMode" class="btn btn-primary">Save</button>
+        <button type="submit" v-show="editMode" class="btn btn-success">Update</button>
+
+
       </div>
     </form>
     </div>
@@ -107,6 +111,7 @@
     export default {
         data(){
             return {
+                editMode:true,
                 users: {} ,
                 form: new Form({
                     name: '' ,
@@ -170,13 +175,21 @@
 
                                         
             },
+            updateUser(){
+                // this.$Progress.start()
+                console.log("update user");
+
+
+            },
             editModal(user){
+                this.editMode = true;
                 this.form.reset();
                 $('#addNew').modal('show');
                 this.form.fill(user)
 
             },
             newModal(){
+                this.editMode = false;
                 this.form.reset();
                 $('#addNew').modal('show');
             }
