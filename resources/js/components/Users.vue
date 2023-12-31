@@ -119,7 +119,7 @@
                 this.$Progress.start()
                 this.form.post('api/user').then(()=>{
                 this.form.reset();
-                this.loadUser();
+                Fire.$emit('AfterCreate');
                 $('#addNew').modal('hide');
                 this.$Progress.finish();
                 Toast.fire({
@@ -134,7 +134,13 @@
             }
         },
         created(){
+            this.$Progress.start()
             this.loadUser();
+            this.$Progress.finish();
+
+            Fire.$on('AfterCreate',()=>{
+                this.loadUser();
+            })
         },
         mounted() {
             console.log('Component mounted.')

@@ -5320,7 +5320,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$Progress.start();
       this.form.post('api/user').then(function () {
         _this.form.reset();
-        _this.loadUser();
+        Fire.$emit('AfterCreate');
         $('#addNew').modal('hide');
         _this.$Progress.finish();
         Toast.fire({
@@ -5338,7 +5338,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
+    var _this3 = this;
+    this.$Progress.start();
     this.loadUser();
+    this.$Progress.finish();
+    Fire.$on('AfterCreate', function () {
+      _this3.loadUser();
+    });
   },
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -5397,6 +5403,7 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default().mixin({
   }
 });
 window.Toast = Toast;
+window.Fire = new Vue();
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var routes = [{
   path: '/dashboard',

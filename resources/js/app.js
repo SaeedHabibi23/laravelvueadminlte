@@ -45,6 +45,9 @@ const Toast = Swal.mixin({
 window.Toast = Toast;
 
 
+window.Fire = new Vue();
+
+
 
 Vue.use(VueRouter)
 
