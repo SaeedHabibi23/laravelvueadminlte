@@ -121,8 +121,13 @@
                 this.form.reset();
                 this.loadUser();
                 $('#addNew').modal('hide');
-                this.$Progress.finish()
+                this.$Progress.finish();
+                Toast.fire({
+                    icon:'success',
+                    title: 'User Created Successfully'
+                })
                 });
+                
             },
             loadUser(){
                 axios.get('api/user').then(({data})=>(this.users= data.data));
