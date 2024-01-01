@@ -93,7 +93,9 @@
         </div>
       </div>
       <div class="modal-footer">
+       
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+       <!-- comment for button -->
         <button type="submit" v-show="!editMode" class="btn btn-primary">Save</button>
         <button type="submit" v-show="editMode" class="btn btn-success">Update</button>
 
